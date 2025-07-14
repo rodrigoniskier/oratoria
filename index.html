@@ -1,1 +1,531 @@
 
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curso de Oratória Sacra</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* Custom styles for the application */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8; /* Light blue-gray background */
+        }
+
+        /* Scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+        
+        /* Animation for content fade-in */
+        .content-module {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <div class="flex h-screen overflow-hidden">
+        <!-- Sidebar -->
+        <aside id="sidebar" class="w-72 bg-white shadow-lg transform -translate-x-full md:translate-x-0 transition-transform duration-300 ease-in-out z-30 fixed md:relative h-full flex flex-col">
+            <div class="p-6 bg-gradient-to-br from-blue-500 to-green-400 text-white">
+                <h1 class="text-2xl font-bold">Oratória Sacra</h1>
+                <p class="text-sm opacity-90">Treinamento Prático</p>
+            </div>
+            <nav class="mt-4 flex-1 overflow-y-auto">
+                <ul>
+                    <!-- Menu items will be injected here by JS -->
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 flex flex-col overflow-y-auto">
+            <!-- Top bar with menu toggle for mobile -->
+            <header class="bg-white shadow-md p-4 flex items-center justify-between md:hidden sticky top-0 z-20">
+                <h2 id="mobile-header-title" class="text-lg font-bold text-gray-700">Bloco 1</h2>
+                <button id="menu-toggle" class="text-gray-600 focus:outline-none">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </header>
+
+            <!-- Content Area -->
+            <div id="content-area" class="p-4 sm:p-6 lg:p-8 flex-1">
+                <!-- Module content will be injected here -->
+            </div>
+
+            <!-- Footer -->
+            <footer class="text-center p-4 bg-white border-t border-gray-200">
+                <p class="text-sm text-gray-500">Desenvolvido por Rodrigo Niskier, ChatGPT e GEMINI</p>
+            </footer>
+        </main>
+    </div>
+
+    <!-- Overlay for mobile menu -->
+    <div id="overlay" class="fixed inset-0 bg-black opacity-50 hidden z-20 md:hidden" onclick="toggleMenu()"></div>
+
+
+    <script>
+        // --- DATA ---
+        const modules = [
+            // Bloco 1
+            {
+                title: "Bloco 1: Fundações Vocais e Corporais",
+                emoji: "🎙️",
+                content: `
+                    <div class="space-y-8">
+                        <div class="p-6 bg-white rounded-xl shadow-md">
+                            <h3 class="text-2xl font-bold text-blue-600 mb-2"><i class="fas fa-bullseye mr-2"></i>Meta do Bloco (Dias 1-7):</h3>
+                            <p class="text-gray-700">Dominar respiração diafragmática, projeção vocal básica, postura ereta de púlpito e gestualidade consciente para gravar, no Dia 7, um vídeo de 3 min expondo João 3:16 com voz firme e gestos moderados.</p>
+                        </div>
+
+                        <div class="p-6 bg-white rounded-xl shadow-md">
+                            <h4 class="text-xl font-bold text-green-600 mb-4"><i class="fas fa-tasks mr-2"></i>Orientações Fixas Diárias</h4>
+                            <ol class="list-decimal list-inside space-y-2 text-gray-700">
+                                <li><strong>Leitura silenciosa (5 min):</strong> Perícope do dia, observando vírgulas para preparar a respiração.</li>
+                                <li><strong>Exercício físico-vocal (5 min):</strong> Três respirações profundas, trinado labial, leitura em sussurro e projeção.</li>
+                                <li><strong>Auto-gravação (máx. 2 min):</strong> Use smartphone na horizontal, a 1m de distância, com iluminação frontal.</li>
+                                <li><strong>Revisão imediata (10 min):</strong> Assista e anote: volume, dicção, postura, gestos. Identifique 1 ponto a corrigir.</li>
+                                <li><strong>Oração escrita (≤ 2 linhas):</strong> Confesse dependência do Espírito para comunicar a verdade com amor e clareza.</li>
+                            </ol>
+                        </div>
+
+                        <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                            <div class="p-6"><h4 class="text-xl font-bold text-gray-800">🗓️ Cronograma de Treino</h4></div>
+                            <div class="overflow-x-auto">
+                                <table class="min-w-full divide-y divide-gray-200">
+                                    <thead class="bg-gray-50">
+                                        <tr>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Dia</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Texto-alvo</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Foco Técnico</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tarefa Prática</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="bg-white divide-y divide-gray-200">
+                                        <tr><td class="px-6 py-4">1</td><td class="px-6 py-4">João 3:16a</td><td class="px-6 py-4">Respiração Diafragmática</td><td class="px-6 py-4">Grave 30s lendo o versículo até manter o ar até o fim.</td></tr>
+                                        <tr><td class="px-6 py-4">2</td><td class="px-6 py-4">Salmo 23:1</td><td class="px-6 py-4">Postura de Púlpito</td><td class="px-6 py-4">Fale o versículo para o espelho, ajustando os ombros.</td></tr>
+                                        <tr><td class="px-6 py-4">3</td><td class="px-6 py-4">Efésios 2:8</td><td class="px-6 py-4">Projeção Vocal</td><td class="px-6 py-4">Leia em três volumes (conversação, médio, projeção) e compare a clareza.</td></tr>
+                                        <tr><td class="px-6 py-4">4</td><td class="px-6 py-4">Romanos 1:16a</td><td class="px-6 py-4">Dicção & Articulação</td><td class="px-6 py-4">Grave 1 min, identifique palavras "engolidas" e repita.</td></tr>
+                                        <tr><td class="px-6 py-4">5</td><td class="px-6 py-4">2 Timóteo 3:16</td><td class="px-6 py-4">Gestos Contidos</td><td class="px-6 py-4">Grave com e sem gestos. Avalie se reforçam ou distraem.</td></tr>
+                                        <tr><td class="px-6 py-4">6</td><td class="px-6 py-4">Isaías 55:11</td><td class="px-6 py-4">Integração Total</td><td class="px-6 py-4">Faça três ciclos de leitura, corrigindo um aspecto por vez.</td></tr>
+                                        <tr><td class="px-6 py-4">7</td><td class="px-6 py-4">João 3:16 completo</td><td class="px-6 py-4">Síntese e Gravação-Meta</td><td class="px-6 py-4">Gravar vídeo final de 3 min e enviar para feedback.</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>`
+            },
+            // Bloco 2
+            {
+                title: "Bloco 2: Estruturação Expositiva",
+                emoji: "🏗️",
+                content: `
+                    <div class="space-y-8">
+                        <div class="p-6 bg-white rounded-xl shadow-md">
+                            <h3 class="text-2xl font-bold text-blue-600 mb-2"><i class="fas fa-bullseye mr-2"></i>Meta do Bloco (Dias 8-14):</h3>
+                            <p class="text-gray-700">Dominar a construção e a execução de um esboço oral (sem notas completas) para gravar, no Dia 14, um áudio de 5 minutos expondo Salmo 23, com transições claras, ênfase adequada e ligação explícita a Cristo.</p>
+                        </div>
+                        <div class="p-6 bg-white rounded-xl shadow-md">
+                             <h4 class="text-xl font-bold text-green-600 mb-4"><i class="fas fa-tools mr-2"></i>Ferramentas Recomendadas</h4>
+                             <ul class="list-disc list-inside space-y-2 text-gray-700">
+                                <li>Cartão 3x5 pol. com palavras-chave (máx. 6) como apoio.</li>
+                                <li>App de metrônomo (60-70 BPM) para estabilizar ritmo de fala.</li>
+                                <li>Fones com microfone para melhorar a qualidade do áudio.</li>
+                             </ul>
+                        </div>
+                        <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                            <div class="p-6"><h4 class="text-xl font-bold text-gray-800">🗓️ Cronograma de Treino</h4></div>
+                            <div class="overflow-x-auto">
+                                <table class="min-w-full divide-y divide-gray-200">
+                                    <thead class="bg-gray-50">
+                                        <tr>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Dia</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Texto-alvo</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Foco Técnico</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tarefa Prática</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="bg-white divide-y divide-gray-200">
+                                        <tr><td class="px-6 py-4">8</td><td class="px-6 py-4">Salmo 23:1-2</td><td class="px-6 py-4">Big Idea & Partições</td><td class="px-6 py-4">Grave 60s explicando a ideia principal e as três seções.</td></tr>
+                                        <tr><td class="px-6 py-4">9</td><td class="px-6 py-4">Salmo 23:3-4</td><td class="px-6 py-4">Palavras-chave-âncora</td><td class="px-6 py-4">Recite as palavras-chave e expanda cada ponto oralmente.</td></tr>
+                                        <tr><td class="px-6 py-4">10</td><td class="px-6 py-4">Salmo 23:5-6</td><td class="px-6 py-4">Transições Claras</td><td class="px-6 py-4">Grave 1 min saltando entre os pontos com frases-ponte.</td></tr>
+                                        <tr><td class="px-6 py-4">11</td><td class="px-6 py-4">João 10:11-15</td><td class="px-6 py-4">Ênfase & Pausas</td><td class="px-6 py-4">Grave 90s enfatizando 3 frases-impacto com pausas.</td></tr>
+                                        <tr><td class="px-6 py-4">12</td><td class="px-6 py-4">Introdução & Conclusão</td><td class="px-6 py-4">Gancho e Fecho</td><td class="px-6 py-4">Grave gancho e fecho (1 min total) e verifique a conexão.</td></tr>
+                                        <tr><td class="px-6 py-4">13</td><td class="px-6 py-4">Salmo 23 (inteiro)</td><td class="px-6 py-4">Execução Corrida (ensaio)</td><td class="px-6 py-4">Grave o ensaio de 5 min e ajuste o tempo de cada seção.</td></tr>
+                                        <tr><td class="px-6 py-4">14</td><td class="px-6 py-4">Salmo 23 (final)</td><td class="px-6 py-4">Gravação-Meta (5 min)</td><td class="px-6 py-4">Grave o áudio final e envie para feedback.</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>`
+            },
+            // Bloco 3
+            {
+                title: "Bloco 3: Narrativa Cristocêntrica",
+                emoji: "📖",
+                content: `
+                    <div class="space-y-8">
+                        <div class="p-6 bg-white rounded-xl shadow-md">
+                            <h3 class="text-2xl font-bold text-blue-600 mb-2"><i class="fas fa-bullseye mr-2"></i>Meta do Bloco (Dias 15-21):</h3>
+                            <p class="text-gray-700">Dominar a técnica de storytelling bíblico que conduz naturalmente a Cristo. No Dia 21, gravar uma micropregação de 7 min sobre Gênesis 22 (sacrifício de Isaque) demonstrando narrativa envolvente, tipologia clara e aplicação pastoral objetiva.</p>
+                        </div>
+                        <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                            <div class="p-6"><h4 class="text-xl font-bold text-gray-800">🗓️ Cronograma de Treino</h4></div>
+                            <div class="overflow-x-auto">
+                                <table class="min-w-full divide-y divide-gray-200">
+                                    <thead class="bg-gray-50">
+                                        <tr>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Dia</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Texto-alvo</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Foco Técnico</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tarefa Prática</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="bg-white divide-y divide-gray-200">
+                                        <tr><td class="px-6 py-4">15</td><td class="px-6 py-4">Gênesis 22:1-4</td><td class="px-6 py-4">Estrutura Narrativa</td><td class="px-6 py-4">Narre o enredo em 90s usando 3 frases-chave.</td></tr>
+                                        <tr><td class="px-6 py-4">16</td><td class="px-6 py-4">Gênesis 22:5-8</td><td class="px-6 py-4">Imagética Sensorial</td><td class="px-6 py-4">Grave 2 min adicionando detalhes sensoriais (som, cheiro).</td></tr>
+                                        <tr><td class="px-6 py-4">17</td><td class="px-6 py-4">Gênesis 22:9-10</td><td class="px-6 py-4">Voz de Personagem</td><td class="px-6 py-4">Grave 1 min alternando vozes de Abraão, Isaque e narrador.</td></tr>
+                                        <tr><td class="px-6 py-4">18</td><td class="px-6 py-4">Gênesis 22:11-14</td><td class="px-6 py-4">Ponte Cristológica</td><td class="px-6 py-4">Em 2 min, explique a tipologia (Isaque/Cristo, Cordeiro/Cristo).</td></tr>
+                                        <tr><td class="px-6 py-4">19</td><td class="px-6 py-4">Gênesis 22 (síntese)</td><td class="px-6 py-4">Aplicação Pastoral</td><td class="px-6 py-4">Grave 90s com 3 perguntas retóricas sobre o sacrifício.</td></tr>
+                                        <tr><td class="px-6 py-4">20</td><td class="px-6 py-4">Gênesis 22 (completo)</td><td class="px-6 py-4">Escalada & Ritmo</td><td class="px-6 py-4">Ensaie o clímax (v. 14) + pausa + aplicação.</td></tr>
+                                        <tr><td class="px-6 py-4">21</td><td class="px-6 py-4">Gênesis 22 (final)</td><td class="px-6 py-4">Gravação-Meta (7 min)</td><td class="px-6 py-4">Gravar vídeo final de 7 min e enviar para feedback.</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>`
+            },
+            // Bloco 4
+            {
+                title: "Bloco 4: Engajamento da Assembleia",
+                emoji: "👥",
+                content: `
+                    <div class="space-y-8">
+                        <div class="p-6 bg-white rounded-xl shadow-md">
+                            <h3 class="text-2xl font-bold text-blue-600 mb-2"><i class="fas fa-bullseye mr-2"></i>Meta do Bloco (Dias 22-28):</h3>
+                            <p class="text-gray-700">Dominar técnicas de variação vocal, ritmo, contato visual e interação retórica para gravar, no Dia 28, um ensaio filmado de 10 min sobre Efésios 2:1-10 que mantenha a congregação atenta.</p>
+                        </div>
+                        <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                            <div class="p-6"><h4 class="text-xl font-bold text-gray-800">🗓️ Cronograma de Treino</h4></div>
+                            <div class="overflow-x-auto">
+                                <table class="min-w-full divide-y divide-gray-200">
+                                    <thead class="bg-gray-50">
+                                        <tr>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Dia</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Texto-alvo</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Foco Técnico</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tarefa Prática</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="bg-white divide-y divide-gray-200">
+                                        <tr><td class="px-6 py-4">22</td><td class="px-6 py-4">Efésios 2:1-2</td><td class="px-6 py-4">Variação de Volume</td><td class="px-6 py-4">Grave 90s aplicando três níveis de volume.</td></tr>
+                                        <tr><td class="px-6 py-4">23</td><td class="px-6 py-4">Efésios 2:3</td><td class="px-6 py-4">Ritmo & Velocidade</td><td class="px-6 py-4">Grave 2 min controlando o ritmo com metrônomo (~140 pal/min).</td></tr>
+                                        <tr><td class="px-6 py-4">24</td><td class="px-6 py-4">Efésios 2:4-5</td><td class="px-6 py-4">Pausas Estratégicas</td><td class="px-6 py-4">Grave 1 min com pausa de 2s antes de "Mas Deus...".</td></tr>
+                                        <tr><td class="px-6 py-4">25</td><td class="px-6 py-4">Efésios 2:6-7</td><td class="px-6 py-4">Contato Visual (simulado)</td><td class="px-6 py-4">Grave 2 min percorrendo 3 zonas do ambiente com o olhar.</td></tr>
+                                        <tr><td class="px-6 py-4">26</td><td class="px-6 py-4">Efésios 2:8-9</td><td class="px-6 py-4">Perguntas Retóricas</td><td class="px-6 py-4">Grave 90s com 2 perguntas e avalie o silêncio reflexivo.</td></tr>
+                                        <tr><td class="px-6 py-4">27</td><td class="px-6 py-4">Efésios 2:10</td><td class="px-6 py-4">Gestos Expansivos</td><td class="px-6 py-4">Grave 2 min integrando gestos, volume e pausas.</td></tr>
+                                        <tr><td class="px-6 py-4">28</td><td class="px-6 py-4">Efésios 2:1-10</td><td class="px-6 py-4">Gravação-Meta (10 min)</td><td class="px-6 py-4">Grave o vídeo final de 10 min e envie para avaliação.</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>`
+            },
+            // Bloco 5
+            {
+                title: "Bloco 5: Depuração e Refinamento",
+                emoji: "💎",
+                content: `
+                    <div class="space-y-8">
+                        <div class="p-6 bg-white rounded-xl shadow-md">
+                            <h3 class="text-2xl font-bold text-blue-600 mb-2"><i class="fas fa-bullseye mr-2"></i>Meta do Bloco (Dias 29-35):</h3>
+                            <p class="text-gray-700">Entregar, no Dia 35, uma pregação expositiva completa de 15 minutos sobre 1 Pedro 1:3-9, que esteja cronometrada, livre de muletas verbais, vocalmente equilibrada e corporalmente controlada.</p>
+                        </div>
+                        <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                            <div class="p-6"><h4 class="text-xl font-bold text-gray-800">🗓️ Cronograma de Treino</h4></div>
+                            <div class="overflow-x-auto">
+                                <table class="min-w-full divide-y divide-gray-200">
+                                    <thead class="bg-gray-50">
+                                        <tr>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Dia</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Texto-alvo</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Foco Técnico</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tarefa Prática</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="bg-white divide-y divide-gray-200">
+                                        <tr><td class="px-6 py-4">29</td><td class="px-6 py-4">1 Pedro 1:3-4</td><td class="px-6 py-4">Muletas Verbais</td><td class="px-6 py-4">Grave 90s e conte as muletas. Repita até ter ≤ 2.</td></tr>
+                                        <tr><td class="px-6 py-4">30</td><td class="px-6 py-4">1 Pedro 1:5</td><td class="px-6 py-4">Temporização</td><td class="px-6 py-4">Grave um ponto de 3 min, com desvio máximo de 10s.</td></tr>
+                                        <tr><td class="px-6 py-4">31</td><td class="px-6 py-4">1 Pedro 1:6</td><td class="px-6 py-4">Controle Corporal</td><td class="px-6 py-4">Grave em vídeo, permitindo no máximo 3 passos planejados.</td></tr>
+                                        <tr><td class="px-6 py-4">32</td><td class="px-6 py-4">1 Pedro 1:7</td><td class="px-6 py-4">Ênfase Vocal</td><td class="px-6 py-4">Grave 2 min, verificando se picos de volume coincidem com palavras-chave.</td></tr>
+                                        <tr><td class="px-6 py-4">33</td><td class="px-6 py-4">1 Pedro 1:8</td><td class="px-6 py-4">Dicção e Velocidade</td><td class="px-6 py-4">Grave 2 min e calcule as palavras/minuto para ajustar o ritmo.</td></tr>
+                                        <tr><td class="px-6 py-4">34</td><td class="px-6 py-4">1 Pedro 1:3-9</td><td class="px-6 py-4">Execução Completa (ensaio)</td><td class="px-6 py-4">Grave o áudio de 15 min e revise todos os pontos técnicos.</td></tr>
+                                        <tr><td class="px-6 py-4">35</td><td class="px-6 py-4">1 Pedro 1:3-9</td><td class="px-6 py-4">Gravação-Meta (15 min)</td><td class="px-6 py-4">Grave o vídeo final de 15 min para avaliação externa.</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>`
+            },
+            // Bloco 6
+            {
+                title: "Bloco 6: Simulações de Culto",
+                emoji: "⛪",
+                content: `
+                    <div class="space-y-8">
+                        <div class="p-6 bg-white rounded-xl shadow-md">
+                            <h3 class="text-2xl font-bold text-blue-600 mb-2"><i class="fas fa-bullseye mr-2"></i>Meta do Bloco (Dias 36-40):</h3>
+                            <p class="text-gray-700">Executar, no Dia 40, uma pregação expositiva completa de 20 minutos, em ambiente de culto simulado, sobre Romanos 8:31-39, com microfone, deslocamento, orações e interação visual.</p>
+                        </div>
+                        <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                            <div class="p-6"><h4 class="text-xl font-bold text-gray-800">🗓️ Cronograma de Treino</h4></div>
+                            <div class="overflow-x-auto">
+                                <table class="min-w-full divide-y divide-gray-200">
+                                    <thead class="bg-gray-50">
+                                        <tr>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Dia</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Texto-alvo</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Foco Técnico</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tarefa Prática</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="bg-white divide-y divide-gray-200">
+                                        <tr><td class="px-6 py-4">36</td><td class="px-6 py-4">Romanos 8:31-34</td><td class="px-6 py-4">Fluxo Litúrgico</td><td class="px-6 py-4">Grave 5 min: oração + leitura + início da exposição.</td></tr>
+                                        <tr><td class="px-6 py-4">37</td><td class="px-6 py-4">Romanos 8:35-36</td><td class="px-6 py-4">Uso do Microfone</td><td class="px-6 py-4">Grave 6 min, mantendo distância e ângulo corretos do microfone.</td></tr>
+                                        <tr><td class="px-6 py-4">38</td><td class="px-6 py-4">Romanos 8:37</td><td class="px-6 py-4">Gestão de Tempo Real</td><td class="px-6 py-4">Grave 7 min com cronômetro regressivo, ajustando-se ao tempo.</td></tr>
+                                        <tr><td class="px-6 py-4">39</td><td class="px-6 py-4">Romanos 8:38</td><td class="px-6 py-4">Interação Simulada</td><td class="px-6 py-4">Grave 8 min, dirigindo o olhar a "fileiras" e usando pausas.</td></tr>
+                                        <tr><td class="px-6 py-4">40</td><td class="px-6 py-4">Romanos 8:31-39</td><td class="px-6 py-4">Gravação-Meta (20 min)</td><td class="px-6 py-4">Gravar o vídeo integral de 20 min e submeter à avaliação.</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>`
+            },
+            // Apêndice A
+            {
+                title: "Apêndice A: Checklist de Equipamentos",
+                emoji: "🛠️",
+                content: `
+                    <div class="space-y-8">
+                        <div class="p-6 bg-white rounded-xl shadow-md">
+                            <h3 class="text-2xl font-bold text-blue-600 mb-2">Checklist de Equipamentos</h3>
+                            <p class="text-gray-700">Uma lista de verificação para garantir a qualidade técnica de suas gravações.</p>
+                        </div>
+                        <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                            <div class="overflow-x-auto">
+                                <table class="min-w-full divide-y divide-gray-200">
+                                    <thead class="bg-gray-50">
+                                        <tr>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Item</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Especificação Mínima</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Verificação Antes do Uso</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="bg-white divide-y divide-gray-200">
+                                        <tr><td class="px-6 py-4">Microfone lapela</td><td class="px-6 py-4">Resposta 50 Hz - 16 kHz; ganho regulável</td><td class="px-6 py-4">Cabos intactos, nível -6 dB no teste</td></tr>
+                                        <tr><td class="px-6 py-4">Tripé/celular</td><td class="px-6 py-4">Altura 1,40 m; rosca 1/4" universal</td><td class="px-6 py-4">Encaixe firme, horizonte nivelado</td></tr>
+                                        <tr><td class="px-6 py-4">Iluminação frontal</td><td class="px-6 py-4">≥1000 lux, 5500 K (luz branca)</td><td class="px-6 py-4">Sem sombras duras no rosto</td></tr>
+                                        <tr><td class="px-6 py-4">Relógio/Timer</td><td class="px-6 py-4">Dígitos ≥25 mm, contagem regressiva</td><td class="px-6 py-4">Visível sem baixar cabeça</td></tr>
+                                        <tr><td class="px-6 py-4">Marcadores de solo</td><td class="px-6 py-4">Fita PVC fosca, 3x10 cm</td><td class="px-6 py-4">Colados no eixo de deslocamento</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>`
+            },
+            // Apêndice B
+            {
+                title: "Apêndice B: Rubrica de Avaliação",
+                emoji: "📊",
+                content: `
+                    <div class="space-y-8">
+                        <div class="p-6 bg-white rounded-xl shadow-md">
+                            <h3 class="text-2xl font-bold text-blue-600 mb-2">Rubrica de Avaliação (5 níveis)</h3>
+                            <p class="text-gray-700">Use esta rubrica para autoavaliação e para solicitar feedback de mentores.</p>
+                        </div>
+                        <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                            <div class="overflow-x-auto">
+                                <table class="min-w-full divide-y divide-gray-200">
+                                    <thead class="bg-gray-50">
+                                        <tr>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Eixo</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">1 (Insuficiente)</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">3 (Adequado)</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">5 (Excelente)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="bg-white divide-y divide-gray-200">
+                                        <tr><td class="px-6 py-4 font-bold">Fidelidade Exegética</td><td class="px-6 py-4">Verso chave omitido</td><td class="px-6 py-4">Texto explicado corretamente</td><td class="px-6 py-4">Intertexto integrado, aplicação fiel</td></tr>
+                                        <tr><td class="px-6 py-4 font-bold">Centralidade em Cristo</td><td class="px-6 py-4">Ausente</td><td class="px-6 py-4">Presente, porém breve</td><td class="px-6 py-4">Cristo exposto como eixo do sermão</td></tr>
+                                        <tr><td class="px-6 py-4 font-bold">Domínio Vocal/Corporal</td><td class="px-6 py-4">Monótono ou tenso; gestos confusos</td><td class="px-6 py-4">Volume/ritmo estáveis; postura firme</td><td class="px-6 py-4">Variações que enfatizam; gestos intencionais</td></tr>
+                                        <tr><td class="px-6 py-4 font-bold">Gestão do Tempo</td><td class="px-6 py-4">Desvio > 2 min</td><td class="px-6 py-4">Desvio ≤ 30 s</td><td class="px-6 py-4">Precisão ≤ 10 s</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>`
+            },
+            // Apêndice C
+            {
+                title: "Apêndice C: Ciclo de Manutenção",
+                emoji: "🔄",
+                content: `
+                    <div class="space-y-8">
+                        <div class="p-6 bg-white rounded-xl shadow-md">
+                            <h3 class="text-2xl font-bold text-blue-600 mb-2">Ciclo de Manutenção (90 dias)</h3>
+                            <p class="text-gray-700">Um plano para continuar o aperfeiçoamento após a conclusão do curso.</p>
+                        </div>
+                        <div class="p-6 bg-white rounded-xl shadow-md">
+                            <ol class="list-decimal list-inside space-y-3 text-gray-700">
+                                <li><strong>Dias 1-14:</strong> Repetir Bloco 2 com novo Salmo.</li>
+                                <li><strong>Dias 15-30:</strong> Repetir Bloco 3 com narrativa do Evangelho.</li>
+                                <li><strong>Dias 31-45:</strong> Repetir Bloco 4 com epístola paulina curta.</li>
+                                <li><strong>Dias 46-60:</strong> Repetir Bloco 5 com profeta menor.</li>
+                                <li><strong>Dias 61-75:</strong> Repetir Bloco 6 em culto real de grupo pequeno.</li>
+                                <li><strong>Dias 76-90:</strong> Receber mentoria, revisar vídeos, definir metas SMART.</li>
+                            </ol>
+                        </div>
+                    </div>`
+            },
+            // Apêndice D
+            {
+                title: "Apêndice D: Recursos Sintéticos",
+                emoji: "🔗",
+                content: `
+                    <div class="space-y-8">
+                        <div class="p-6 bg-white rounded-xl shadow-md">
+                            <h3 class="text-2xl font-bold text-blue-600 mb-2">Recursos Sintéticos (Referência Rápida)</h3>
+                            <p class="text-gray-700">Ferramentas úteis para a prática contínua.</p>
+                        </div>
+                        <div class="p-6 bg-white rounded-xl shadow-md">
+                            <ul class="list-disc list-inside space-y-3 text-gray-700">
+                                <li><strong>Metronome Beats (Android/iOS):</strong> Controle de ritmo.</li>
+                                <li><strong>Um Counter (Android):</strong> Contagem automática de muletas verbais.</li>
+                                <li><strong>Spectroid (Android):</strong> Análise espectral de ênfase vocal.</li>
+                                <li><strong>OBS Studio (Desktop):</strong> Gravações multi-câmera sem custo.</li>
+                            </ul>
+                        </div>
+                        <div class="p-6 bg-yellow-50 border border-yellow-300 rounded-xl shadow-md">
+                            <h3 class="text-2xl font-bold text-yellow-700 mb-4">Encaminhamento Final</h3>
+                            <ul class="list-disc list-inside space-y-2 text-gray-700">
+                                <li><strong>Integração à igreja local:</strong> Candidate-se para liturgias menores.</li>
+                                <li><strong>Mentoria contínua:</strong> Apresente gravações mensais ao seu pastor.</li>
+                                <li><strong>Avaliação anual:</strong> Repita a rubrica de cinco eixos, buscando progressão.</li>
+                            </ul>
+                        </div>
+                    </div>`
+            }
+        ];
+
+        // --- DOM ELEMENTS ---
+        const sidebar = document.getElementById('sidebar');
+        const menuNav = sidebar.querySelector('nav ul');
+        const contentArea = document.getElementById('content-area');
+        const menuToggle = document.getElementById('menu-toggle');
+        const overlay = document.getElementById('overlay');
+        const mobileHeaderTitle = document.getElementById('mobile-header-title');
+
+        let activeModule = 0;
+
+        // --- FUNCTIONS ---
+
+        /**
+         * Toggles the mobile menu visibility.
+         */
+        function toggleMenu() {
+            sidebar.classList.toggle('-translate-x-full');
+            overlay.classList.toggle('hidden');
+        }
+
+        /**
+         * Loads the content for a specific module.
+         * @param {number} index - The index of the module to load.
+         */
+        function loadModule(index) {
+            if (index < 0 || index >= modules.length) return;
+
+            activeModule = index;
+            const module = modules[index];
+            
+            // Update content
+            contentArea.innerHTML = `<div class="content-module">${module.content}</div>`;
+            
+            // Update mobile header
+            mobileHeaderTitle.textContent = module.title.split(':')[0];
+
+            // Update active state in menu
+            const menuItems = menuNav.querySelectorAll('li a');
+            menuItems.forEach((item, i) => {
+                const textSpan = item.querySelector('span.text-sm');
+                if (i === index) {
+                    item.classList.add('bg-blue-500', 'text-white');
+                    item.classList.remove('text-gray-600', 'hover:bg-gray-100');
+                    textSpan.classList.add('font-semibold');
+                } else {
+                    item.classList.remove('bg-blue-500', 'text-white');
+                    item.classList.add('text-gray-600', 'hover:bg-gray-100');
+                    textSpan.classList.remove('font-semibold');
+                }
+            });
+
+            // Close menu on mobile after selection
+            if (window.innerWidth < 768 && !sidebar.classList.contains('-translate-x-full')) {
+                toggleMenu();
+            }
+
+            // Scroll to top of content
+            contentArea.scrollTop = 0;
+        }
+
+        /**
+         * Initializes the application by populating the menu and loading the first module.
+         */
+        function initializeApp() {
+            // Populate menu
+            menuNav.innerHTML = modules.map((module, index) => `
+                <li>
+                    <a href="#" onclick="loadModule(${index}); event.preventDefault();" class="flex items-center p-3 text-gray-600 hover:bg-gray-100 transition-colors duration-200 rounded-md mx-2">
+                        <span class="mr-3 text-lg">${module.emoji}</span>
+                        <span class="text-sm font-medium">${module.title}</span>
+                    </a>
+                </li>
+            `).join('');
+
+            // Load the first module
+            loadModule(0);
+        }
+
+        // --- EVENT LISTENERS ---
+        menuToggle.addEventListener('click', toggleMenu);
+        overlay.addEventListener('click', toggleMenu);
+
+        // --- INITIALIZATION ---
+        document.addEventListener('DOMContentLoaded', initializeApp);
+    </script>
+</body>
+</html>
